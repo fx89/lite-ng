@@ -1,0 +1,39 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "lite-ng": {
+      "projectType": "library",
+      "root": "projects/lite-ng",
+      "sourceRoot": "projects/lite-ng/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/lite-ng/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/lite-ng/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/lite-ng/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/lite-ng/src/test.ts",
+            "tsConfig": "projects/lite-ng/tsconfig.spec.json",
+            "karmaConfig": "projects/lite-ng/karma.conf.js"
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "lite-ng"
+}

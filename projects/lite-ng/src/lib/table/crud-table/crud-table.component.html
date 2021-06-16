@@ -1,0 +1,71 @@
+<div [id]="getContainerId()" class="crud-table-container">
+
+    <div class="crud-table-data-table-container" [style.height.px]="dataTableHeightPX" *ngIf="contentType=='table'">
+        <lite-ng-data-table
+            [id]="getDataTableId()"
+            [data]="data"
+            [(selectedItem)]="selectedItem"
+            (onSelectionChanged)="onTableSelectionChanged($event)"
+            [columnTitles]="columnTitles"
+            [displayFunctions]="displayFunctions"
+            [dataGridRowNumberFunction]="dataGridRowNumberFunction"
+            [showHeader]="showHeader"
+            [isDataGrid]="true"
+            [showDataGridRowNumbers]="showDataGridRowNumbers"
+        ></lite-ng-data-table>
+    </div>
+    <lite-ng-list *ngIf="contentType=='list'"
+        [widthPCT]="100"
+        [heightPX]="dataTableHeightPX"
+        [items]="data"
+        [(selectedItem)]="selectedItem"
+        (onSelectionChanged)="onTableSelectionChanged($event)"
+        [iconFunction]="listIconFunction"
+        [titleFunction]="listTitleFunction"
+        [descriptionFunction]="listDescriptionFunction"
+    ></lite-ng-list>
+
+    <div class="spacer"></div>
+
+    <div class="crud-table-buttons-container">
+        <!-- Custom buttons -->
+        <lite-ng-pushbutton *ngFor="let btn of customButtons" [widthPX]="btn.widthPX" [text]="btn.text" (onClick)="btn.callback(selectedItem)" style="float:left; padding-right:3px;" [enabled]="selectedItem"></lite-ng-pushbutton>
+
+        <!-- Standard buttons -->
+        <lite-ng-pushbutton [widthPX]="40" text="Del" (onClick)="onDelButtonClicked()" *ngIf="showDelButton" style="float:right; padding-left:3px;" [enabled]="selectedItem"></lite-ng-pushbutton>
+        <lite-ng-pushbutton [widthPX]="40" text="Edit" (onClick)="onEditButtonClicked()" *ngIf="showEditButton" style="float:right; padding-left:3px;" [enabled]="selectedItem"></lite-ng-pushbutton>
+        <lite-ng-pushbutton [widthPX]="40" text="Add" (onClick)="onAddButtonClicked()" *ngIf="showAddButton" style="float:right; padding-left:3px;"></lite-ng-pushbutton>
+    </div>
+</div>
+
+<lite-ng-dialog
+    [title]="editDialogTitle"
+    okButtonText="Save"
+    cancelButtonText="Cancel"
+    [widthPX]="editDialogWidthPX"
+    [heightPX]="editDialogHeightPX"
+    [showEvent]="editDialogShowEvent"
+    [okCallback]="onDialogOkButtonClicked"
+    [cancelCallback]="onDialogCancelButtonClicked"
+    [showValidationMessages]="showEditDialogValidationMessages"
+    [okButtonEnabled]="dialogSaveButtonEnabled"
+>
+    <div style="width:100%; height:100%; border-width:0px; border-style:none; margin:0px; padding:0px;"
+        *ngIf="selectedItem"
+    >
+        <ng-content></ng-content>
+    </div>
+</lite-ng-dialog>
+
+<lite-ng-msgbox
+    [title]="delConfirmationMsgboxTitle"
+    [message]="delConfirmationMsgboxMessage"
+    [hasTwoButtons]="true"
+    okButtonText="Yes"
+    cancelButtonText="No"
+    [showEvent]="delConfirmationMsgboxShowEvent"
+    [okCallback]="onDelConfirmationMsgboxOkClicked"
+    [cancelCallback]="onDelConfirmationMsgboxCancelClicked"
+    [widthPX]="300"
+    [heightPX]="100"
+></lite-ng-msgbox>
