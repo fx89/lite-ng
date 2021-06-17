@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LiteNgToastService } from '../toast.service';
 
 @Component({
-  selector: 'serviceable-toast',
+  selector: 'lite-ng-serviceable-toast',
   templateUrl: './serviceable-toast.component.html',
   styleUrls: ['./serviceable-toast.component.css']
 })
