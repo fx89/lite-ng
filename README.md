@@ -26,7 +26,62 @@ Follow these steps to link this library using NPM LINK:
 	<link rel="stylesheet" type="text/css" href="assets/skins/light/style.css">
 	<link rel="stylesheet" type="text/css" href="assets/skins/dark/style.css">
 ```
+	+ Add or update the "base" tag inside the "head" tag in your "index.html":
+```html
+	<head>
+		<base href="/">
+		...
+	</head>
+```
 	+ Add a skin class to the "body" tag in your project's "index.html" file:
 ```html
 	<body class="light"> <!-- light skin -->
 ```
+```html
+	<body class="dark"> <!-- dark skin -->
+```
+
+
+
+## Using the components
+
+	Each component is part of a library module. To use the components, one must first reference their respective modules from the project's app.module.ts.
+```typescript
+	import { LiteNgLoadingModalModule, LiteNgMessageBoxModule, LiteNgToastModule } from "@desolatetimelines/lite-ng";
+```
+```typescript
+	imports: [
+     ...
+     LiteNgLoadingModalModule,
+     LiteNgMessageBoxModule,
+     LiteNgToastModule,
+	 ...
+  ],
+```
+
+	To add the components provided in the above example, put the following tags in app.component.html, or any other top-level component
+```html
+	<lite-ng-loading-modal></lite-ng-loading-modal>
+	<lite-ng-serviceable-msgbox></lite-ng-serviceable-msgbox>
+	<lite-ng-serviceable-toast></lite-ng-serviceable-toast>
+```
+
+	To activate the components, import the services, inject them into any component class via the constructor and then call their functionality
+```typescript
+	import { LiteNgLoadingModalService, LiteNgMsgboxService, LiteNgToastService } from '@desolatetimelines/lite-ng';
+```
+```typescript
+	constructor(
+		private loadingModal : LiteNgLoadingModalService,
+		private msgBox : LiteNgMsgboxService,
+		private toast : LiteNgToastService
+	) {}
+```
+```typescript
+	ngAfterViewInit() {
+		this.loadingModal.show();
+		this.msgBox.show("My title aaa", "My message aaa");
+		this.toast.showInfo("Err title", "Err desc");
+	}
+```
+
