@@ -22,4 +22,4 @@ import { LiteNgToastService } from './toast.service';
     LiteNgToastService
   ]
 })
-export class ToastModule { }
+export class LiteNgToastModule { }
