@@ -44,3 +44,11 @@ export * from './lib/switch/switch/switch.component';
 
 export * from './lib/text-field/text-field.module';
 export * from './lib/text-field/text-field/text-field.component';
+
+export * from './lib/http-data/http-data.module';
+export * from './lib/http-data/http-repository';
+export * from './lib/http-data/loading-modal-wrapped-http-repository';
+export * from './lib/http-data/http-repository-factory.service';
+
+export * from './lib/configuration/configuration.module';
+export * from './lib/configuration/configuration.service';
