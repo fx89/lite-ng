@@ -23,7 +23,9 @@ export class LiteNgHttpRepositoryFactoryService {
   public newLoadingModalWrappedHttpRepository(
       baseURL : string,
       loadingModalTitle : string = "PROCESSING",
-      loadingModalSubtitle : string = "please be patient"
+      loadingModalSubtitle : string = "please be patient",
+      redirectDecision : Function = () => false,
+      redirectUrl : string = ""
   ) : LiteNgLoadingModalWrappedHttpRepository
   {
     return new LiteNgLoadingModalWrappedHttpRepository(
@@ -32,7 +34,9 @@ export class LiteNgHttpRepositoryFactoryService {
         this.httpClient,
         baseURL,
         loadingModalTitle,
-        loadingModalSubtitle
+        loadingModalSubtitle,
+        redirectDecision,
+        redirectUrl
     );
   }
 }

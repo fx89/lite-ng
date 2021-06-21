@@ -12,7 +12,9 @@ export class LiteNgLoadingModalWrappedHttpRepository extends LiteNgHttpRepositor
         client : LiteNgHttpClientWrapperService,
         baseURL: string,
         private loadingModalTitle : string = "LOADING",
-        private loadingModalSubtitle : string = "please be patient"
+        private loadingModalSubtitle : string = "please be patient",
+        private redirectDecision : Function = () => false,
+        private redirectUrl : string = ""
     ) {
         super(client, baseURL);
 
@@ -26,12 +28,12 @@ export class LiteNgLoadingModalWrappedHttpRepository extends LiteNgHttpRepositor
     public getCustomOperationWithLoadingModal(
         operationName           : string,
         params?                 : Map<string, string>,
-        resultHadnler?          : Function
+        resultHandler?          : Function
     ) : EventEmitter<any>
     {
         return this.loadingModalService.envelopOperation(
             () => this.getCustomOperation(operationName, params),
-            resultHadnler,
+            this.createResultHandler(<any>resultHandler),
             this.loadingModalTitle,
             this.loadingModalSubtitle
         );
@@ -41,11 +43,11 @@ export class LiteNgLoadingModalWrappedHttpRepository extends LiteNgHttpRepositor
         operationName           : string,
         body                    : any,
         params?                 : Map<string, string>,
-        resultHadnler?          : Function
+        resultHandler?          : Function
     ) : EventEmitter<any> {
         return this.loadingModalService.envelopOperation(
             () => this.saveCustomOperation(operationName, body, params),
-            resultHadnler,
+            this.createResultHandler(<any>resultHandler),
             this.loadingModalTitle,
             this.loadingModalSubtitle
         );
@@ -55,13 +57,25 @@ export class LiteNgLoadingModalWrappedHttpRepository extends LiteNgHttpRepositor
         operationName           : string,
         body                    : any,
         params?                 : Map<string, string>,
-        resultHadnler?          : Function
+        resultHandler?          : Function
       ) : EventEmitter<any> {
         return this.loadingModalService.envelopOperation(
             () => this.deleteCustomOperation(operationName, body, params),
-            resultHadnler,
+            this.createResultHandler(<any>resultHandler),
             this.loadingModalTitle,
             this.loadingModalSubtitle
         );
+      }
+
+      private createResultHandler(resultHandler:Function) : Function  {
+          return (ret:any) => {
+            if (this.redirectDecision(ret) == true) {
+                window.location.replace(this.redirectUrl);
+            } else {
+                if (resultHandler != null && resultHandler != undefined) {
+                    resultHandler(ret);
+                }
+            } 
+          }
       }
 }
