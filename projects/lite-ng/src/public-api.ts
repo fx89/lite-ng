@@ -53,3 +53,10 @@ export * from './lib/http-data/http-client-redirect-decisions';
 
 export * from './lib/configuration/configuration.module';
 export * from './lib/configuration/configuration.service';
+
+export * from './lib/tabs/tabs.module';
+export * from './lib/tabs/lite-ng-tabs-horizontal/lite-ng-tabs-horizontal.component';
+export * from './lib/tabs/lite-ng-tabs-vertical/lite-ng-tabs-vertical.component';
+export * from './lib/tabs/lite-ng-tab/lite-ng-tab.component';
+export * from './lib/tabs/lite-ng-tab-button/lite-ng-tab-button.component';
+export * from './lib/tabs/tabs-logic';

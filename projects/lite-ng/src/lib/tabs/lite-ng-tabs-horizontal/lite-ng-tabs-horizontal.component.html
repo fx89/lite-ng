@@ -1,0 +1,18 @@
+<div
+    [id]="getContainerId()"
+    [class]="getContainerClasses()"
+    [style.width.px] = "lengthPX"
+    [style.width.pct] = "(lengthPX ? undefined : 100)"
+>
+    <table cellspacing="0" cellpadding="0"
+        style="width:100%"
+        [style.width.px] = "lengthPX"
+        [style.width.pct] = "(lengthPX ? undefined : 100)"
+    >
+        <tr><td style="width: 100%" class="tabs-header tabs-header-horizontal">
+            <ng-content select="span[role=header]"></ng-content>
+        </td></tr><tr><td [id]="getBodyId()" style="width: 100%" class="tabs-body tabs-body-horizontal">
+            <ng-content select="span[role=body]"></ng-content>
+        </td></tr>
+    </table>
+</div>
