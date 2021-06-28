@@ -60,3 +60,7 @@ export * from './lib/tabs/lite-ng-tabs-vertical/lite-ng-tabs-vertical.component'
 export * from './lib/tabs/lite-ng-tab/lite-ng-tab.component';
 export * from './lib/tabs/lite-ng-tab-button/lite-ng-tab-button.component';
 export * from './lib/tabs/tabs-logic';
+
+export * from './lib/menu/menu.module';
+export * from './lib/menu/menu-button-definition';
+export * from './lib/menu/vertical-buttons-menu/vertical-buttons-menu.component';

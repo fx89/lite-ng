@@ -1,0 +1,21 @@
+<span class="vertical-buttons-menu">
+    <lite-ng-dialog
+        [widthPX] = "widthPX"
+        [heightPX] = "heightPX"
+        [isModal] = "isModal"
+        [title] = "title"
+        [showOkButton] = "false"
+        [showCancelButton] = "true"
+        [cancelButtonText] = "closeButtonText"
+        [showEvent]="showEvent"
+        [showValidationMessages]="false"
+    >
+        <lite-ng-pushbutton *ngFor="let btn of bttons"
+            [widthPX]="buttonWidthPX"
+            [heightPX]="buttonHeightPX"
+            [icon]="btn.iconPathName"
+            [text]="btn.text"
+            (onClick)="clickMenuButton(btn)"
+        ></lite-ng-pushbutton>
+    </lite-ng-dialog>
+</span>
