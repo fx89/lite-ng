@@ -47,15 +47,18 @@ export class LiteNgTabsLogic {
 
     private setTabVisibility(tab : HTMLElement, visible : boolean) {
         if (visible) {
+          tab.style.position = "relative";
           tab.style.visibility = "visible";
           tab.style.width = "100%";
           tab.style.height = "100%";
           tab.classList.add("faded-in");
         } else {
+          tab.style.position = "absolute";
           tab.style.visibility = "hidden";
           tab.style.width = "0";
           tab.style.height = "0";
           tab.classList.remove("faded-in");
+
         }
       }
     
