@@ -33,6 +33,9 @@ export class LiteNgVerticalButtonsMenuComponent implements OnInit {
   showEvent : EventEmitter<any> = new EventEmitter<any>();
 
   @Input()
+  hideEvent : EventEmitter<any> = new EventEmitter<any>();
+
+  @Input()
   closeButtonText : string = "Close";
 
   constructor() { }

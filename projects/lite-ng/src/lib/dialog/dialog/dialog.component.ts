@@ -35,6 +35,9 @@ export class LiteNgDialogComponent implements AfterViewInit {
   @Input()
   showEvent : EventEmitter<any> = new EventEmitter<any>();
 
+  @Input()
+  hideEvent : EventEmitter<any> = new EventEmitter<any>();
+
   @Output()
   okEvent : EventEmitter<any> = new EventEmitter<any>();
 
@@ -96,6 +99,11 @@ export class LiteNgDialogComponent implements AfterViewInit {
     this.centerComponent(this.dialogFrameComponent);
     window.addEventListener("resize", () => {
       this.centerComponent(this.dialogFrameComponent);
+    });
+
+    // Subscribe to the hide event
+    this.hideEvent.subscribe(() => {
+      this.hideDialog();
     });
   }
 
