@@ -19,4 +19,4 @@ import { FormsModule } from '@angular/forms';
     LiteNgTextFieldComponent
   ]
 })
-export class TextFieldModule { }
+export class LiteNgTextFieldModule { }
