@@ -6,6 +6,8 @@ import { LiteNgHttpRepository } from './http-repository';
 
 export class LiteNgLoadingModalWrappedHttpRepository extends LiteNgHttpRepository {
 
+    private errFilters : Function[] = [];
+
     constructor(
         private loadingModalService : LiteNgLoadingModalService,
         private toastService : LiteNgToastService,
@@ -20,9 +22,25 @@ export class LiteNgLoadingModalWrappedHttpRepository extends LiteNgHttpRepositor
 
         this.errorEventEmitter
             .subscribe((err) => {
-                this.toastService.showError(err.error, err.message);
-                this.loadingModalService.hide();
+                if (this.redirectDecision(err) == true) {
+                    window.location.replace(this.redirectUrl);
+                } else {
+                    if (this.isErrDisplayable(err)) {
+                        this.toastService.showError(err.error, err.message);
+                    }
+                    this.loadingModalService.hide();
+                }
             });
+    }
+
+    private isErrDisplayable(err : any) : boolean {
+        for (var errFilter of this.errFilters) {
+            if (errFilter(err)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public getCustomOperationWithLoadingModal(
@@ -77,5 +95,13 @@ export class LiteNgLoadingModalWrappedHttpRepository extends LiteNgHttpRepositor
                 }
             } 
           }
+      }
+
+      public addErrFilter(errFilter : Function) {
+          this.errFilters.push(errFilter);
+      }
+
+      public clearErrFilters() {
+          this.errFilters = [];
       }
 }
