@@ -22,6 +22,9 @@ export class LiteNgPushbuttonComponent implements OnInit {
   @Input()
   text : string = "Ok";
 
+  @Input()
+  additionalClass : string = "";
+
   @Output()
   onClick : EventEmitter<any> = new EventEmitter<any>();
 
@@ -34,5 +37,9 @@ export class LiteNgPushbuttonComponent implements OnInit {
     if (this.enabled) {
       this.onClick.emit($event);
     }
+  }
+
+  getClassNames() : string {
+	  return "pushbutton " + this.additionalClass;
   }
 }

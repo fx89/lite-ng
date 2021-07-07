@@ -18,6 +18,9 @@ export class LiteNgTextFieldComponent implements OnInit, AfterViewInit {
   @Output()
   valueChange : EventEmitter<string> = new EventEmitter<string>();
 
+  @Output()
+  keyUpEvent : EventEmitter<string> = new EventEmitter<string>();
+
   @Input()
   placeholder: string = "Enter value";
 
@@ -32,6 +35,9 @@ export class LiteNgTextFieldComponent implements OnInit, AfterViewInit {
 
   @Input()
   validationFunction : Function = () => "";
+
+  @Input()
+  additionalClass : string = " ";
 
   isValid : boolean = true;
 
@@ -56,6 +62,7 @@ export class LiteNgTextFieldComponent implements OnInit, AfterViewInit {
 
   onKeyUp($event : any) {
     this.validate();
+    this.keyUpEvent.emit($event);
   }
 
   validate() {
@@ -68,5 +75,7 @@ export class LiteNgTextFieldComponent implements OnInit, AfterViewInit {
     return this.id + "_textbox";
   }
 
-
+  getClassName() : string {
+	  return "text-field " + this.additionalClass;
+  }
 }

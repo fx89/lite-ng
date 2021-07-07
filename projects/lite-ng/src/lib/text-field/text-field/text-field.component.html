@@ -8,7 +8,7 @@
         <input
             [id]="getTextboxId()"
             type="text"
-            class="text-field"
+            [class]="getClassName()"
             [(ngModel)]="value"
             (change)="onChange($event)"
             (keyup)="onKeyUp($event)"
