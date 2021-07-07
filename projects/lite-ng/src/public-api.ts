@@ -44,6 +44,7 @@ export * from './lib/switch/switch/switch.component';
 
 export * from './lib/text-field/text-field.module';
 export * from './lib/text-field/text-field/text-field.component';
+export * from './lib/text-field/character-allowed-functions';
 
 export * from './lib/http-data/http-data.module';
 export * from './lib/http-data/http-repository';

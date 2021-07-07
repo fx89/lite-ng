@@ -39,6 +39,9 @@ export class LiteNgTextFieldComponent implements OnInit, AfterViewInit {
   @Input()
   additionalClass : string = " ";
 
+  @Input()
+  characterAllowedFunction : Function = (chr:any) => true;
+
   isValid : boolean = true;
 
   constructor(private validationService : LiteNgValidationService) { }
@@ -61,8 +64,20 @@ export class LiteNgTextFieldComponent implements OnInit, AfterViewInit {
   }
 
   onKeyUp($event : any) {
+    this.removeNotAllowedCharacters();
     this.validate();
     this.keyUpEvent.emit($event);
+  }
+
+  private removeNotAllowedCharacters() {
+    let chrArr = Array.from(this.value);
+    let val : string = "";
+    chrArr.forEach(chr => {
+      if (this.characterAllowedFunction(chr)) {
+        val += chr;
+      }
+    });
+    this.value = val;
   }
 
   validate() {
