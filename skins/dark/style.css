@@ -785,3 +785,32 @@ body.dark {
 .dark .switch-button.on {
     background-color: #555;
 }
+
+.dark .accordion {
+
+}
+
+.dark .accordion-section {
+
+}
+
+.dark .accordion-section-header-div {
+    width:100%;
+}
+
+.dark .accordion-section-header-div:hover {
+}
+
+.dark .accordion-section-header-div.selected {
+
+}
+
+.dark .accordion-section-compound-div {
+    height: 0px;
+    visibility: hidden;
+}
+
+.dark .accordion-section-compound-div.selected {
+    height: auto;
+    visibility: visible;
+}

@@ -768,3 +768,32 @@ body.light {
 .switch-button.on {
     background-color: #555;
 }
+
+.accordion {
+
+}
+
+.accordion-section {
+
+}
+
+.accordion-section-header-div {
+    width:100%;
+}
+
+.accordion-section-header-div:hover {
+}
+
+.dark .accordion-section-header-div.selected {
+
+}
+
+.accordion-section-compound-div {
+    height: 0px;
+    visibility: hidden;
+}
+
+.accordion-section-compound-div.selected {
+    height: auto;
+    visibility: visible;
+}

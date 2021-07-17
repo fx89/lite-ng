@@ -65,3 +65,7 @@ export * from './lib/tabs/tabs-logic';
 export * from './lib/menu/menu.module';
 export * from './lib/menu/menu-button-definition';
 export * from './lib/menu/vertical-buttons-menu/vertical-buttons-menu.component';
+
+export * from './lib/accordion/accordion.module';
+export * from './lib/accordion/accordion/accordion.component';
+export * from './lib/accordion/accordion-section/accordion-section.component';

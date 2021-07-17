@@ -1,0 +1,11 @@
+<div class="accordion-section">
+    <div class="accordion-section-header-div"
+        (click)="onCompoundDivClicked()"
+        [class.selected]="isSelected"
+    >
+        {{ title }}
+    </div>
+    <div class="accordion-section-compound-div" [class.selected]="isSelected">
+        <ng-content></ng-content>
+    </div>
+</div>
