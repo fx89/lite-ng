@@ -24,6 +24,9 @@ export class LiteNgAccordionComponent implements AfterViewInit {
     this.sections.forEach(section => {
       section.onClick.subscribe((clickedSection:LiteNgAccordionSectionComponent) => {
         this.sections.forEach(sect => {
+          if (sect.isSelected) {
+            sect.isDeselected = true;
+          }
           sect.isSelected = (sect.id == clickedSection.id) ? (!sect.isSelected) : false;
         });
         this.onSelectionChanged.emit();

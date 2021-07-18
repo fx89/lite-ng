@@ -777,23 +777,36 @@ body.light {
 
 }
 
-.accordion-section-header-div {
-    width:100%;
-}
-
-.accordion-section-header-div:hover {
-}
-
-.dark .accordion-section-header-div.selected {
+.battleships .accordion-section-header-div {
 
 }
 
-.accordion-section-compound-div {
-    height: 0px;
-    visibility: hidden;
+.battleships .accordion-section-header-div:hover {
+
 }
 
-.accordion-section-compound-div.selected {
-    height: auto;
-    visibility: visible;
+.battleships .accordion-section-header-div.selected {
+
 }
+
+.battleships .accordion-section-compound-div {
+    opacity: 0%;
+    max-height: 0px;
+}
+
+.battleships .accordion-section-compound-div.deselected {
+    opacity: 0%;
+    max-height: 0px;
+    animation-name: accordion-section-closing;
+    animation-duration: 1s;
+    transition-timing-function: ease;
+}
+
+.battleships .accordion-section-compound-div.selected {
+    opacity: 100%;
+    max-height: 1000px;
+    animation-name: accordion-section-opening;
+    animation-duration: 1s;
+    transition-timing-function: ease;
+}
+

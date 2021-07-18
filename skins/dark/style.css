@@ -794,23 +794,35 @@ body.dark {
 
 }
 
-.dark .accordion-section-header-div {
-    width:100%;
-}
-
-.dark .accordion-section-header-div:hover {
-}
-
-.dark .accordion-section-header-div.selected {
+.dark .battleships .accordion-section-header-div {
 
 }
 
-.dark .accordion-section-compound-div {
-    height: 0px;
-    visibility: hidden;
+.dark .battleships .accordion-section-header-div:hover {
+
 }
 
-.dark .accordion-section-compound-div.selected {
-    height: auto;
-    visibility: visible;
+.dark .battleships .accordion-section-header-div.selected {
+
+}
+
+.dark .battleships .accordion-section-compound-div {
+    opacity: 0%;
+    max-height: 0px;
+}
+
+.dark .battleships .accordion-section-compound-div.deselected {
+    opacity: 0%;
+    max-height: 0px;
+    animation-name: accordion-section-closing;
+    animation-duration: 1s;
+    transition-timing-function: ease;
+}
+
+.dark .battleships .accordion-section-compound-div.selected {
+    opacity: 100%;
+    max-height: 1000px;
+    animation-name: accordion-section-opening;
+    animation-duration: 1s;
+    transition-timing-function: ease;
 }

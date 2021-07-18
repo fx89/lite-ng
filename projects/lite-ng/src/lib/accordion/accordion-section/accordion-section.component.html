@@ -2,10 +2,14 @@
     <div class="accordion-section-header-div"
         (click)="onCompoundDivClicked()"
         [class.selected]="isSelected"
+        [class.deselected]="isDeselected"
     >
         {{ title }}
     </div>
-    <div class="accordion-section-compound-div" [class.selected]="isSelected">
+    <div class="accordion-section-compound-div"
+        [class.selected]="isSelected"
+        [class.deselected]="isDeselected"
+    >
         <ng-content></ng-content>
     </div>
 </div>

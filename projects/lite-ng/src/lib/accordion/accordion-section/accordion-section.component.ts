@@ -17,6 +17,9 @@ export class LiteNgAccordionSectionComponent implements OnInit {
   @Input()
   isSelected : boolean = false;
 
+  @Input()
+  isDeselected : boolean = false;
+
   onClick : EventEmitter<any> = new EventEmitter<any>();
 
   constructor() { }
