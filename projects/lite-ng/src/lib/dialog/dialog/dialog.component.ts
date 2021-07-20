@@ -74,6 +74,9 @@ export class LiteNgDialogComponent implements AfterViewInit {
   @Input()
   okButtonEnabled : Function = () => true;
 
+  @Input()
+  externalValidationMessageEvent : EventEmitter<string> = new EventEmitter<string>();
+
   private containedElementIds : string[] = [];
 
   public firstValidationMessage : string = <any>null;
@@ -105,6 +108,11 @@ export class LiteNgDialogComponent implements AfterViewInit {
     this.hideEvent.subscribe(() => {
       this.hideDialog();
     });
+
+    // Subscribe to the external validation message event
+	this.externalValidationMessageEvent.subscribe(validationMessage => {
+      this.showValidationMessage(validationMessage);
+	});
   }
 
   private collectContainedElementIds() {
@@ -182,13 +190,9 @@ export class LiteNgDialogComponent implements AfterViewInit {
           this.hideDialog();
         }
       } else {
-        this.firstValidationMessage = this.validationService.getFirstValidationMessage(this.containedElementIds);
-
-        if (this.validationTimer) {
-          clearTimeout(this.validationTimer);
-        }
-
-        this.validationTimer = setTimeout(() => { this.firstValidationMessage = <any>null; }, this.validationMessageLifeSecs * 1000);
+        this.showValidationMessage(
+          this.validationService.getFirstValidationMessage(this.containedElementIds)
+        );
       }
     }
   }
@@ -203,6 +207,16 @@ export class LiteNgDialogComponent implements AfterViewInit {
         this.hideDialog();
       }
     }
+  }
+
+  private showValidationMessage(validatonMessage : string) {
+    this.firstValidationMessage = validatonMessage;
+
+    if (this.validationTimer) {
+      clearTimeout(this.validationTimer);
+    }
+
+    this.validationTimer = setTimeout(() => { this.firstValidationMessage = <any>null; }, this.validationMessageLifeSecs * 1000);
   }
 
   private checkValidation() : boolean {
