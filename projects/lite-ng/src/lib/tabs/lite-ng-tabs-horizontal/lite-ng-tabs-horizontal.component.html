@@ -8,11 +8,15 @@
         style="width:100%"
         [style.width.px] = "lengthPX"
         [style.width.pct] = "(lengthPX ? undefined : 100)"
+		class="horizontal-tabs-container-table"
     >
         <tr><td style="width: 100%" class="tabs-header tabs-header-horizontal">
             <ng-content select="span[role=header]"></ng-content>
         </td></tr><tr><td [id]="getBodyId()" style="width: 100%" class="tabs-body tabs-body-horizontal">
             <ng-content select="span[role=body]"></ng-content>
-        </td></tr>
+        </td></tr><tr><td [id]="getFooterId()" style="width: 100%" class="tabs-footer tabs-footer-horizontal">
+			<ng-content select="span[role=footer]"></ng-content>
+		</td></tr>
     </table>
+	
 </div>

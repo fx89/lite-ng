@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, Input } from '@angular/core';
+import { Component, AfterViewInit, Input, Output, EventEmitter } from '@angular/core';
 import { LiteNgTabsLogic } from '../tabs-logic';
 import { v4 as uuid } from 'uuid';
 
@@ -25,8 +25,14 @@ export class LiteNgTabsVerticalComponent implements AfterViewInit {
 
   constructor() { }
 
+  @Input()
+  activeTabIndex : Number = -1;
+
+  @Output()
+  activeTabIndexChange : EventEmitter<Number> = new EventEmitter<Number>();
+
   ngAfterViewInit(): void {
-    this.tabsLogic.initTabs(this.isSetOfDrawers, this.getContainerId(), true, this.getBodyId())
+    this.tabsLogic.initTabs(this.isSetOfDrawers, this.getContainerId(), true, this.getBodyId(), this.activeTabIndex, this.activeTabIndexChange);
   }
 
   getContainerId() : string {
@@ -35,6 +41,10 @@ export class LiteNgTabsVerticalComponent implements AfterViewInit {
 
   getBodyId() : string {
     return this.id + "_body";
+  }
+
+  getFooterId() : string {
+    return this.id + "_footer";
   }
 
   getContainerClasses() : string {

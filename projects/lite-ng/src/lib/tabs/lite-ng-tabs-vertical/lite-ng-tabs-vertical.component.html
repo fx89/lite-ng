@@ -8,11 +8,14 @@
         style="height:100%"
         [style.height.px] = "lengthPX"
         [style.height.pct] = "(lengthPX ? undefined : 100)"
+		class="vertical-tabs-container-table"
     >
         <tr><td style="height: 100%" class="tabs-header tabs-header-vertical">
             <ng-content select="span[role=header]"></ng-content>
         </td><td [id]="getBodyId()" style="height: 100%" class="tabs-body tabs-body-vertical">
             <ng-content select="span[role=body]"></ng-content>
+        </td><td [id]="getFooterId()" style="height: 100%" class="tabs-footer tabs-footer-vertical">
+            <ng-content select="span[role=footer]"></ng-content>
         </td></tr>
     </table>
 </div>

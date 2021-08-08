@@ -1,13 +1,16 @@
+import { EventEmitter } from '@angular/core';
+
 export class LiteNgTabsLogic {
 
-    private visibleTabIndex : number = -1;
+    private visibleTabIndex : Number = -1;
 
     constructor() {}
 
-    public initTabs(isSetOfDrawers : boolean, containerId : string, isVertical : boolean, bodyId : string) : void {
+    public initTabs(isSetOfDrawers : boolean, containerId : string, isVertical : boolean, bodyId : string, activeTabIndex : Number, activeTabIndexChange : EventEmitter<Number>) : void {
       // Init tabs visiblility
+	  this.visibleTabIndex = activeTabIndex;
       this.forEachTab(containerId, (tab : HTMLElement, n : number) => {
-        if (!isSetOfDrawers && n == 0) {
+        if (!isSetOfDrawers && n == activeTabIndex) {
           this.setTabVisibility(tab, true);
         } else {
           this.setTabVisibility(tab, false);
@@ -17,7 +20,12 @@ export class LiteNgTabsLogic {
       // Set up the click events and eventual styles on buttons
       this.forEachButton(containerId, (button : HTMLElement, n : number) => {
         // Add the "tab button" and "not selected" class
-        button.classList.add("tab-button", "tab-button-not-selected");
+        button.classList.add("tab-button");
+        if (n == activeTabIndex) {
+            button.classList.add("tab-button-selected");
+        } else {
+            button.classList.add("tab-button-not-selected");
+        }
 
         // Set up the click event for the button
         button.onclick = () => {
@@ -26,6 +34,7 @@ export class LiteNgTabsLogic {
             btn.classList.remove("tab-button-selected", "tab-button-not-selected");
             btn.classList.add((btnIdx == n && this.visibleTabIndex != -1) ? "tab-button-selected" : "tab-button-not-selected");
           });
+		  activeTabIndexChange.emit(n);
         }
 
         // If the layout is vertical, then make the button flow vertically
